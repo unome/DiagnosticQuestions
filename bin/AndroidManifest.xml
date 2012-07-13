@@ -13,13 +13,18 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_activity_main"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity 
+            android:name=".DetailsActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+            ></activity>
     </application>
 
 </manifest>
