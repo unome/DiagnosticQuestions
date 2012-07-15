@@ -14,6 +14,7 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
     }
 
     /*@Override
@@ -33,6 +34,10 @@ public class MainActivity extends Activity {
     	{
     		//skip to next question 
     		
+    	}
+    	if(v.getId()==R.id.button_done)
+    	{
+    		//Check for correct answers
     	}
     }
 
