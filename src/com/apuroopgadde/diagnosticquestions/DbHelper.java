@@ -18,11 +18,18 @@ public class DbHelper extends SQLiteOpenHelper{
 
 	//The Android's default system path of your application database.
 	private static String DB_PATH = "/data/data/com.apuroopgadde.diagnosticquestions/databases/";
-
 	private static String DB_NAME = "dQuestionsDb";
-
-	private SQLiteDatabase myDataBase;
-
+	public static String qTable = "QuestionsTable";
+	public static String oTable = "OptionsTable";
+	public static String aTable = "AnswerExplanation";
+	public static String qid = "questionId";
+	public static String rowId = "_id";
+	public static String question = "Question";
+	public static String noAnswers = "noOfAnswers";
+	public static String option = "option";
+	public static String correct = "Correct";
+	public static String expla = "explanation";	
+	public SQLiteDatabase myDataBase;
 	private final Context myContext;
 
 	/**

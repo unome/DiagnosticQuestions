@@ -1,7 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-    
+    android:layout_height="match_parent"
+    android:columnCount="5" >
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/tV_scoreDisplay"
+        android:layout_column="3"
+        android:layout_gravity="left"
+        android:layout_row="0"
+        android:text="Score:0"
+        android:textSize="18dip" />
+
+    <Button
+        android:id="@+id/button_prevQuestion"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_column="0"
+        android:layout_columnSpan="2"
+        android:layout_gravity="left|bottom"
+        android:layout_row="3"
+        android:text="PrevQues" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="274dp"
+        android:layout_column="0"
+        android:layout_columnSpan="5"
+        android:layout_gravity="left"
+        android:layout_row="3" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TableLayout
+                android:id="@+id/tL_optionsDisplay"
+                android:layout_width="match_parent"
+                android:layout_height="304dp" >
+            </TableLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/button_skipQuestion"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_column="2"
+        android:layout_columnSpan="2"
+        android:layout_gravity="right|bottom"
+        android:layout_row="3"
+        android:text="SkipQues" />
+
+    <Button
+        android:id="@+id/button_done"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="74dp"
+        android:layout_column="2"
+        android:layout_gravity="left|bottom"
+        android:layout_row="3"
+        android:text="Done" />
+
+    <Space
+        android:layout_width="21dp"
+        android:layout_height="1dp"
+        android:layout_column="0"
+        android:layout_row="0" />
+
+    <Space
+        android:layout_width="96dp"
+        android:layout_height="1dp"
+        android:layout_column="1"
+        android:layout_row="0" />
+
+    <Space
+        android:layout_width="128dp"
+        android:layout_height="1dp"
+        android:layout_column="2"
+        android:layout_row="0" />
+
+    <Space
+        android:layout_width="21dp"
+        android:layout_height="1dp"
+        android:layout_column="3"
+        android:layout_row="0" />
+
+    <Space
+        android:layout_width="52dp"
+        android:layout_height="1dp"
+        android:layout_column="4"
+        android:layout_row="0" />
+
+    <TextView
+        android:id="@+id/tV_question"
+        android:layout_width="match_parent"
+        android:layout_height="111dp"
+        android:layout_column="0"
+        android:layout_columnSpan="4"
+        android:layout_gravity="left"
+        android:layout_row="2"
+        android:text="TextView"
+        android:textSize="18dip" />
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="18dp"
+        android:layout_column="0"
+        android:layout_row="1" />
+
+    <Space
+        android:layout_width="1dp"
+        android:layout_height="114dp"
+        android:layout_column="0"
+        android:layout_row="2" />
+
+</GridLayout>
