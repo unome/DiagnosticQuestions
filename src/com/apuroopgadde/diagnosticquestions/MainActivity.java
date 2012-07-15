@@ -1,7 +1,9 @@
 package com.apuroopgadde.diagnosticquestions;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,10 +16,27 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+		final SharedPreferences wmbPreference = PreferenceManager.getDefaultSharedPreferences(this);
+		boolean isFirstRun = wmbPreference.getBoolean("FIRSTRUN", true);
+		if (isFirstRun)
+		{
+			SharedPreferences.Editor editor = wmbPreference.edit();
+			editor.putBoolean("FIRSTRUN", false);
+			editor.putInt("currQuestion",1);
+			editor.putInt("currentScore", -1);
+			editor.commit();
+		}
+		showQuestion();
         
     }
+    
 
-    /*@Override
+    private void showQuestion() {
+		
+	}
+
+
+	/*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
