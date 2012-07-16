@@ -25,6 +25,8 @@
             android:name=".DetailsActivity"
             android:theme="@android:style/Theme.Holo.NoActionBar" >
             ></activity>
+        <activity android:name=".FinalScoreActivity"
+            android:theme="@android:style/Theme.Holo.NoActionBar" ></activity>
     </application>
 
 </manifest>

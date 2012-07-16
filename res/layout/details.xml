@@ -42,7 +42,7 @@
         android:layout_row="1" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/button_nextQues"
         style="?android:attr/buttonBarButtonStyle"
         android:layout_column="0"
         android:layout_gravity="right"
@@ -52,14 +52,15 @@
         android:text="Next Question" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_viewQues"
         style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="168dp"
         android:layout_column="0"
         android:layout_gravity="left"
         android:layout_row="4"
         android:layout_rowSpan="2"
         android:onClick="onClickHandler"
-        android:text="View Question" />
+        android:text="View Question and Correct Answer" />
 
     <Space
         android:layout_width="1dp"

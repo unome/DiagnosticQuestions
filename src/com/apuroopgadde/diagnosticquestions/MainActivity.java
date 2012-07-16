@@ -23,7 +23,6 @@ import android.widget.Toast;
 import android.widget.TableRow.LayoutParams;
 import android.support.v4.app.NavUtils;
 
-@SuppressLint("ParserError")
 public class MainActivity extends Activity {
 	DbHelper dbhelper;
 	int questionId=0;
@@ -62,7 +61,9 @@ public class MainActivity extends Activity {
 		Button doneButton=(Button)findViewById(R.id.button_done);
 		Button prevQuesButton=(Button)findViewById(R.id.button_prevQuestion);
 		Button skipQuesButton=(Button)findViewById(R.id.button_skipQuestion);
+		TextView scoreText=(TextView)findViewById(R.id.tV_scoreDisplay);
 		final SharedPreferences wmbPreference = PreferenceManager.getDefaultSharedPreferences(this);
+		scoreText.setText("Score:"+wmbPreference.getInt("currentScore",0));
 		Log.d(TAG,"currentQuestion"+wmbPreference.getInt("currQuestion", 1));
 		String question = "select * from "+dbhelper.qTable + " where "+dbhelper.rowId +" = "
 				+wmbPreference.getInt("currQuestion", 1)+";";
@@ -70,17 +71,21 @@ public class MainActivity extends Activity {
 		String answered = "false";
 		if(sqlIt.moveToNext())
 		{
-			TextView quesText = (TextView)findViewById(R.id.tV_question);
+			TextView quesText = (TextView)findViewById(R.id.tV_quesDisplay);
 			quesText.setText(sqlIt.getString(1));
 			questionId = sqlIt.getInt(0);
 			answered=sqlIt.getString(2);
 		}
 		if(questionId==1)
 			prevQuesButton.setVisibility(View.INVISIBLE);
+
+		if(answered.equals("True"))
+		{
+			doneButton.setText("View Explanation");
+			skipQuesButton.setText("Next Ques");
+		}
 		if(questionId==7)
 			skipQuesButton.setText("View Score");
-		if(answered.equals("True"))
-			doneButton.setVisibility(View.INVISIBLE);
 		sqlIt.close();
 		String optionsQuery = "select * from "+dbhelper.oTable + " where "+dbhelper.qid+" = "
 				+questionId;
@@ -93,7 +98,7 @@ public class MainActivity extends Activity {
 			CheckBox cBox = new CheckBox(this);
 			cBox.setTag("cB" + optionsIt.getString(2));
 			if(answered.equals("True"))
-				cBox.setClickable(false);
+				cBox.setEnabled(false);
 			cBox.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
@@ -111,7 +116,7 @@ public class MainActivity extends Activity {
 			tbrow.addView(cBox);
 			TextView kName = new TextView(this);
 			kName.setText(optionsIt.getString(2));
-			kName.setTextSize(15);
+			kName.setTextSize(18);
 			kName.setClickable(true);
 			tbrow.addView(kName);
 			tl.addView(tbrow);
@@ -144,24 +149,45 @@ public class MainActivity extends Activity {
 		{
 			if(questionId==7)
 			{
-				return;
+
+				Intent showScore = new Intent(this,
+						FinalScoreActivity.class);
+				startActivityForResult(showScore,0);
 			}
+			else{
 			final SharedPreferences wmbPreference = PreferenceManager.getDefaultSharedPreferences(this);
 			int nextQuestionValue = wmbPreference.getInt("currQuestion",1)+1;
 			SharedPreferences.Editor editor = wmbPreference.edit();
 			editor.putInt("currQuestion",nextQuestionValue);
 			editor.commit();
 			onCreate(null);
+			}
 
 		}
 		if(v.getId()==R.id.button_done)
 		{
-			Log.d(TAG,"checked size is:"+checked.size());
+			if(((Button) v).getText().equals("View Explantion"))
+			{
+				Intent showAnswer = new Intent(MainActivity.this,
+						DetailsActivity.class);
+				showAnswer.putExtra("alreadyAnswered",true);
+				startActivityForResult(showAnswer, 0);
+			}
+			else{
+				
+			if(checked.size()==0)
+			{
+				Toast.makeText(v.getContext(), "Please select atleast one option",
+						Toast.LENGTH_LONG).show();
+				return;
+			}
+			//Log.d(TAG,"checked size is:"+checked.size());
 			Intent showAnswer = new Intent(MainActivity.this,
 					DetailsActivity.class);
+			showAnswer.putExtra("alreadyAnswered",false);
 			showAnswer.putStringArrayListExtra("answers",checked);
 			startActivityForResult(showAnswer, 0);
-			//Check for correct answers
+			}
 		}
 	}
 
