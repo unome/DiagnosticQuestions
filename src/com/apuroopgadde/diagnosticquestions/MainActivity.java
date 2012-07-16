@@ -65,7 +65,7 @@ public class MainActivity extends Activity {
 		TextView scoreText=(TextView)findViewById(R.id.tV_scoreDisplay);
 		final SharedPreferences wmbPreference = PreferenceManager.getDefaultSharedPreferences(this);
 		scoreText.setText("Score:"+wmbPreference.getInt("currentScore",0));
-		Log.d(TAG,"currentQuestion"+wmbPreference.getInt("currQuestion", 1));
+		//Log.d(TAG,"currentQuestion"+wmbPreference.getInt("currQuestion", 1));
 		String question = "select * from "+dbhelper.qTable + " where "+dbhelper.rowId +" = "
 				+wmbPreference.getInt("currQuestion", 1)+";";
 		Cursor sqlIt = db.rawQuery(question, null);
@@ -112,7 +112,6 @@ public class MainActivity extends Activity {
 					ArrayList<View> allViews = new ArrayList<View>();
 					allViews = currRow.getTouchables();
 					TextView optionName = (TextView) (allViews.get(1));
-					Log.d(TAG,"option is"+optionName.getText());
 					if(((CheckBox)v).isChecked())
 						checked.add((String) optionName.getText());
 					else
