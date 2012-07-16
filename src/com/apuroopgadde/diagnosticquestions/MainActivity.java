@@ -112,7 +112,7 @@ public class MainActivity extends Activity {
 					ArrayList<View> allViews = new ArrayList<View>();
 					allViews = currRow.getTouchables();
 					TextView optionName = (TextView) (allViews.get(1));
-					Log.d(TAG,"option is"+optionName.getText());
+					//Log.d(TAG,"option is"+optionName.getText());
 					if(((CheckBox)v).isChecked())
 						checked.add((String) optionName.getText());
 					else

@@ -83,7 +83,7 @@ public class DetailsActivity extends Activity{
 				answerDetailsDisplay.setText("Correct answer and explanation is \n \n"+explanationIt.getString(2));
 			String setQuesAnswered="update "+dbhelper.qTable+" set "+dbhelper.quesAnswered+"='True' where "+
 					dbhelper.rowId+" = "+wmbPreference.getInt("currQuestion", 1)+";";
-			Log.d(TAG,setQuesAnswered);
+			//Log.d(TAG,setQuesAnswered);
 			db.execSQL(setQuesAnswered);
 			db.close();
 		}	
