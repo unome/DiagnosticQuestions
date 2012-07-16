@@ -72,8 +72,8 @@ public class MainActivity extends Activity {
 		if(sqlIt.moveToNext())
 		{
 			TextView quesText = (TextView)findViewById(R.id.tV_quesDisplay);
-			quesText.setText(sqlIt.getString(1));
 			questionId = sqlIt.getInt(0);
+			quesText.setText(questionId+":"+sqlIt.getString(1));
 			answered=sqlIt.getString(2);
 		}
 		if(questionId==1)
