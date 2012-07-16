@@ -11,12 +11,12 @@
         android:layout_gravity="left"
         android:layout_row="1"
         android:text="TextView"
-        android:textSize="18dip" />
+        android:textSize="20dip" />
 
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
-        android:layout_height="324dp"
+        android:layout_height="460dp"
         android:layout_column="0"
         android:layout_gravity="left"
         android:layout_row="2" >
@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="320dp"
             android:text="TextView"
-            android:textSize="18dip" />
+            android:textSize="20dip" />
     </ScrollView>
 
     <Space
@@ -45,9 +45,8 @@
         android:id="@+id/button_nextQues"
         style="?android:attr/buttonBarButtonStyle"
         android:layout_column="0"
-        android:layout_gravity="right"
+        android:layout_gravity="right|bottom"
         android:layout_row="4"
-        android:layout_rowSpan="2"
         android:onClick="onClickHandler"
         android:text="Next Question" />
 
@@ -56,9 +55,8 @@
         style="?android:attr/buttonBarButtonStyle"
         android:layout_width="168dp"
         android:layout_column="0"
-        android:layout_gravity="left"
+        android:layout_gravity="left|bottom"
         android:layout_row="4"
-        android:layout_rowSpan="2"
         android:onClick="onClickHandler"
         android:text="View Question and Correct Answer" />
 
@@ -66,13 +64,13 @@
         android:layout_width="1dp"
         android:layout_height="58dp"
         android:layout_column="0"
-        android:layout_row="3" />
+        android:layout_row="4" />
 
     <Space
         android:layout_width="1dp"
-        android:layout_height="15dp"
+        android:layout_height="49dp"
         android:layout_column="0"
-        android:layout_row="4" />
+        android:layout_row="5" />
 
     <Space
         android:layout_width="122dp"
@@ -105,8 +103,9 @@
         android:layout_row="5" />
 
     <Space
-        android:layout_width="100dp"
-        android:layout_height="44dp"
-        android:layout_row="5" />
+        android:layout_width="1dp"
+        android:layout_height="10dp"
+        android:layout_column="0"
+        android:layout_row="3" />
 
 </GridLayout>

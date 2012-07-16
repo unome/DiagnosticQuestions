@@ -122,7 +122,7 @@ public class MainActivity extends Activity {
 			tbrow.addView(cBox);
 			TextView kName = new TextView(this);
 			kName.setText(optionsIt.getString(2));
-			kName.setTextSize(18);
+			kName.setTextSize(20);
 			kName.setClickable(true);
 			tbrow.addView(kName);
 			tl.addView(tbrow);
