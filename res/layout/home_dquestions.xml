@@ -33,7 +33,7 @@
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
-        android:layout_height="274dp"
+        android:layout_height="303dp"
         android:layout_column="0"
         android:layout_columnSpan="6"
         android:layout_gravity="left"
@@ -42,12 +42,14 @@
         <HorizontalScrollView
             android:id="@+id/horScrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="match_parent"
+            android:fillViewport="true" >
 
             <TableLayout
                 android:id="@+id/tL_optionsDisplay"
                 android:layout_width="match_parent"
-                android:layout_height="304dp" >
+                android:layout_height="match_parent"
+                android:fillViewport="true" >
             </TableLayout>
         </HorizontalScrollView>
     </ScrollView>
@@ -70,7 +72,7 @@
         android:layout_gravity="left|bottom"
         android:layout_row="3"
         android:onClick="onClickHandler"
-        android:text="Done" />
+        android:text="Check Answer" />
 
     <Button
         android:id="@+id/button_skipQuestion"

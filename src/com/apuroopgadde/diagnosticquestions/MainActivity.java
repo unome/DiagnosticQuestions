@@ -26,6 +26,7 @@ import android.support.v4.app.NavUtils;
 public class MainActivity extends Activity {
 	DbHelper dbhelper;
 	int questionId=0;
+	private String answered = "false";
 	static String TAG="dQuestions";
 	ArrayList<String> checked = new ArrayList<String>();
 	@Override
@@ -68,7 +69,6 @@ public class MainActivity extends Activity {
 		String question = "select * from "+dbhelper.qTable + " where "+dbhelper.rowId +" = "
 				+wmbPreference.getInt("currQuestion", 1)+";";
 		Cursor sqlIt = db.rawQuery(question, null);
-		String answered = "false";
 		if(sqlIt.moveToNext())
 		{
 			TextView quesText = (TextView)findViewById(R.id.tV_quesDisplay);
@@ -98,10 +98,16 @@ public class MainActivity extends Activity {
 			CheckBox cBox = new CheckBox(this);
 			cBox.setTag("cB" + optionsIt.getString(2));
 			if(answered.equals("True"))
-				cBox.setEnabled(false);
+			{
+				
+				if(optionsIt.getString(3).equals("True"))
+					cBox.setChecked(true);
+			}
 			cBox.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
+					if(answered.equals("True"))
+						return;
 					TableRow currRow = (TableRow) v.getParent(); // getParent returns the parent
 					ArrayList<View> allViews = new ArrayList<View>();
 					allViews = currRow.getTouchables();
@@ -155,18 +161,18 @@ public class MainActivity extends Activity {
 				startActivityForResult(showScore,0);
 			}
 			else{
-			final SharedPreferences wmbPreference = PreferenceManager.getDefaultSharedPreferences(this);
-			int nextQuestionValue = wmbPreference.getInt("currQuestion",1)+1;
-			SharedPreferences.Editor editor = wmbPreference.edit();
-			editor.putInt("currQuestion",nextQuestionValue);
-			editor.commit();
-			onCreate(null);
+				final SharedPreferences wmbPreference = PreferenceManager.getDefaultSharedPreferences(this);
+				int nextQuestionValue = wmbPreference.getInt("currQuestion",1)+1;
+				SharedPreferences.Editor editor = wmbPreference.edit();
+				editor.putInt("currQuestion",nextQuestionValue);
+				editor.commit();
+				onCreate(null);
 			}
 
 		}
 		if(v.getId()==R.id.button_done)
 		{
-			if(((Button) v).getText().equals("View Explantion"))
+			if(answered.equals("True"))
 			{
 				Intent showAnswer = new Intent(MainActivity.this,
 						DetailsActivity.class);
@@ -174,19 +180,19 @@ public class MainActivity extends Activity {
 				startActivityForResult(showAnswer, 0);
 			}
 			else{
-				
-			if(checked.size()==0)
-			{
-				Toast.makeText(v.getContext(), "Please select atleast one option",
-						Toast.LENGTH_LONG).show();
-				return;
-			}
-			//Log.d(TAG,"checked size is:"+checked.size());
-			Intent showAnswer = new Intent(MainActivity.this,
-					DetailsActivity.class);
-			showAnswer.putExtra("alreadyAnswered",false);
-			showAnswer.putStringArrayListExtra("answers",checked);
-			startActivityForResult(showAnswer, 0);
+
+				if(checked.size()==0)
+				{
+					Toast.makeText(v.getContext(), "Please select atleast one option",
+							Toast.LENGTH_LONG).show();
+					return;
+				}
+				//Log.d(TAG,"checked size is:"+checked.size());
+				Intent showAnswer = new Intent(MainActivity.this,
+						DetailsActivity.class);
+				showAnswer.putExtra("alreadyAnswered",false);
+				showAnswer.putStringArrayListExtra("answers",checked);
+				startActivityForResult(showAnswer, 0);
 			}
 		}
 	}

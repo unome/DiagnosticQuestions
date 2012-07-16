@@ -63,7 +63,7 @@ public class DetailsActivity extends Activity{
 			{
 				correctOrNot.setText("You've got the correct answer");
 			}
-			else if(answersIt.getCount()!=checked.size()&&score>0)
+			else if(checked.size()!=score&&score>0)
 			{
 				correctOrNot.setText("Your answer is partially correct");
 			}
